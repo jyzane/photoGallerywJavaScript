@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 9 - Photo Gallery with JavaScript</title>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            perspective: 1500px;
+            overflow: hidden;
+        }
+
+        #container {
+            margin-top: 230px;
+            display: flex;
+            width: 350px;
+            height: 200px;
+            transform-style: preserve-3d;
+            animation: carousel 20s linear infinite;
+            animation-play-state: running;
+        }
+
+        @keyframes carousel {
+            from {
+                transform: rotateY(0deg);
+            }
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+
+        #container img {
+            position: absolute;
+            width: 350px;
+            height: 200px;
+        }
+
+        #container img:hover{
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+        #container img:first-child {
+            transform: translateZ(500px);
+        }
+
+        #container img:nth-child(2) {
+            transform: rotateY(60deg) translateZ(500px);
+        }
+
+        #container img:nth-child(3) {
+            transform: rotateY(120deg) translateZ(500px);
+        }
+
+        #container img:nth-child(4) {
+            transform: rotateY(180deg) translateZ(500px);
+        }
+
+        #container img:nth-child(5) {
+            transform: rotateY(240deg) translateZ(500px);
+        }
+
+        #container img:nth-child(6) {
+            transform: rotateY(300deg) translateZ(500px);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="./img/kafka.png" alt="Kafka from Honkai Star Rail">
+        <img src="./img/Firefly.png" alt="Firefly from Honkai Star Rail">
+        <img src="./img/blade.PNG" alt="Blade from Honkai Star Rail">
+        <img src="./img/JingLiu.png" alt="Jingliu from Honkai Star Rail">
+        <img src="./img/moze.jpg" alt="Moze from Honkai Star Rail">
+        <img src="./img/RuanMei.png" alt="Ruan Mei from Honkai Star Rail">
+    </div>
+    <script>
+        "use strict";
+
+        const container = document.getElementById("container");
+
+        function stopcarousel() {
+            container.style.animationPlayState = "paused";
+        }
+
+        function resumecarousel() {
+            container.style.animationPlayState = "running";
+        }
+
+        container.addEventListener("mouseenter", stopcarousel);
+        container.addEventListener("mouseleave", resumecarousel);
+    </script>
+</body>
+</html>
